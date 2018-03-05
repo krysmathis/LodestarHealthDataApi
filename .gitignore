@@ -1,11 +1,9 @@
 bin
-appsettings*
 obj
 *.db
 *.sqlite3
 .vscode
 .vscode/*
-Migrations*
 .DS_Store
 
 ## remove this when moving the data over
