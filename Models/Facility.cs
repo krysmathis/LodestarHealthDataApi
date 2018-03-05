@@ -1,13 +1,17 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace LodestarHealthDataApi.Models
 {
     public class Facility
     {
+        [Key]
+        public int FacilityId {get; set;}
         public string System_Affiliation_Name {get; set;}
         public string Facility_Name {get;set;}
-        public float Current_Year_Market_Share {get; set;}
-        public float Current_Year_Commercial_Market_Share {get; set;}
-        public float Lat {get;set;}
-        public float Long {get; set;}
+        public double Current_Year_Market_Share {get; set;}
+        public double Current_Year_Commercial_Market_Share {get; set;}
+        public double Lat {get;set;}
+        public double Long {get; set;}
         public string Quality_Complications_Deaths {get; set;}
         public int Likelihood_To_Recommend {get; set;}
         public int Overall_Hospital_Linear_Mean_Score {get; set;}

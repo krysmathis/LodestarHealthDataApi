@@ -29,7 +29,7 @@ namespace LodestarHealthDataApi
 
             services.AddMvc();
             // TODO: store connection string in a secure place
-            string connection = "./LodestarHealthData.db";
+            string connection = "Data Source=LodestarHealthData.db";
             services.AddDbContext<LodestarAPIContext>(options => options.UseSqlite(connection));
             services.AddMvc();
         }

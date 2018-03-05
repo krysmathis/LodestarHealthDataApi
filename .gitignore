@@ -5,6 +5,8 @@ obj
 *.sqlite3
 .vscode
 .vscode/*
+Migrations*
+
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
