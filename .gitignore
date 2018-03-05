@@ -6,6 +6,10 @@ obj
 .vscode
 .vscode/*
 Migrations*
+.DS_Store
+
+## remove this when moving the data over
+data.csv
 
 !.vscode/settings.json
 !.vscode/tasks.json
