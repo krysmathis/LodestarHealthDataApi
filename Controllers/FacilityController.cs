@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LodestarHealthDataApi.Data;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LodestarHealthDataApi.Controllers
@@ -17,6 +18,7 @@ namespace LodestarHealthDataApi.Controllers
         }
         // GET api/values/5
         [HttpGet]
+        [DisableCors]
         public IEnumerable<string> Get(string latitude, string longitude)
         {
             return new string[] { latitude, longitude };
