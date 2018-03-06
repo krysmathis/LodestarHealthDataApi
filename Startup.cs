@@ -26,8 +26,7 @@ namespace LodestarHealthDataApi
         public void ConfigureServices(IServiceCollection services)
         {
             //TODO: Cors frameworks ala https://github.com/spooky-oysters/bangazon/blob/master/Startup.cs
-
-            services.AddMvc();
+            services.AddCors();
             // TODO: store connection string in a secure place
             string connection = "Data Source=LodestarHealthData.db";
             services.AddDbContext<LodestarAPIContext>(options => options.UseSqlite(connection));
@@ -41,6 +40,12 @@ namespace LodestarHealthDataApi
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            // Shows UseCors with CorsPolicyBuilder.
+            app.UseCors(builder =>
+                builder.WithOrigins("https://blissful-kare-a8283f.netlify.com","localhost:3000")
+                .AllowAnyHeader()    
+            );
 
             app.UseMvc();
         }
