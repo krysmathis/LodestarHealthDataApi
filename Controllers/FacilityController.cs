@@ -20,9 +20,9 @@ namespace LodestarHealthDataApi.Controllers
         // GET api/values/5
         [HttpGet]
         [DisableCors]
-        public Facility Get(string latitude, string longitude)
+        public Facility[] Get(string latitude, string longitude)
         {
-            return _context.Facility.FirstOrDefault();
+            return _context.Facility.ToArray();
         }
 
         // GET api/values/5
