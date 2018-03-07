@@ -10,11 +10,11 @@ namespace LodestarHealthDataApi.Data
         { }
 
         public DbSet<Facility> Facility {get;set;}
-        //public DbSet<Customer> Customer { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Facility>()
+            .HasIndex(p => new { p.Lat, p.Long });
         }
     
     }

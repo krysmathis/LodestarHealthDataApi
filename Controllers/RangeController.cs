@@ -10,19 +10,20 @@ using Microsoft.AspNetCore.Mvc;
 namespace LodestarHealthDataApi.Controllers
 {
     [Route("api/[controller]")]
-    public class FacilityController : Controller
+    public class RangeController : Controller
     {
+
         private readonly LodestarAPIContext _context;
 
-        public FacilityController (LodestarAPIContext context) {
+        public RangeController (LodestarAPIContext context) {
             _context = context;
         }
-        // GET api/values/5
-        [HttpGet]
-        public Facility[] Get()
+
+         [HttpGet]
+        public Facility[] Get(string long1, string lat1, string long2, string lat2)
         {
+            // this will search within a range of lat/longs
             return _context.Facility.ToArray();
         }
-
     }
 }
