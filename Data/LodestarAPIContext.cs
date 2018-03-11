@@ -1,9 +1,10 @@
 using LodestarHealthDataApi.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace LodestarHealthDataApi.Data
 {
-    public class LodestarAPIContext: DbContext
+    public class LodestarAPIContext: IdentityDbContext<ApplicationUser>
     {         
         public LodestarAPIContext(DbContextOptions<LodestarAPIContext> options)
             : base(options)
@@ -13,6 +14,8 @@ namespace LodestarHealthDataApi.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Facility>()
             .HasIndex(p => new { p.Lat, p.Long });
         }
