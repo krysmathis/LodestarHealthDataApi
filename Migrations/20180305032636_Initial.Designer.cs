@@ -10,9 +10,10 @@ using System;
 namespace LodestarHealthDataApi.Migrations
 {
     [DbContext(typeof(LodestarAPIContext))]
-    partial class LodestarAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180305032636_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,8 +69,6 @@ namespace LodestarHealthDataApi.Migrations
                     b.Property<long>("Total_Liabilities");
 
                     b.HasKey("FacilityId");
-
-                    b.HasIndex("Lat", "Long");
 
                     b.ToTable("Facility");
                 });
