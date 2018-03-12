@@ -11,8 +11,8 @@ using System;
 namespace LodestarHealthDataApi.Migrations
 {
     [DbContext(typeof(LodestarAPIContext))]
-    [Migration("20180311160312_initial-with-identity")]
-    partial class initialwithidentity
+    [Migration("20180312015806_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

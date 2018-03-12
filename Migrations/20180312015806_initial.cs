@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LodestarHealthDataApi.Migrations
 {
-    public partial class initialwithidentity : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

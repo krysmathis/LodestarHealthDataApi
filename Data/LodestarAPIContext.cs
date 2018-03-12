@@ -11,6 +11,7 @@ namespace LodestarHealthDataApi.Data
         { }
 
         public DbSet<Facility> Facility {get;set;}
+        public DbSet<ApplicationUser> ApplicationUser {get;set;}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
