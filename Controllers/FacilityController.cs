@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LodestarHealthDataApi.Data;
 using LodestarHealthDataApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace LodestarHealthDataApi.Controllers
             _context = context;
         }
         // GET api/values/5
+        // TODO: add the [Authorize] attribute
         [HttpGet]
         public Facility[] Get()
         {

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LodestarHealthDataApi.Data;
 using LodestarHealthDataApi.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +20,8 @@ namespace LodestarHealthDataApi.Controllers
             _context = context;
         }
 
-         [HttpGet]
+        [Authorize]
+        [HttpGet]
         public Facility[] Get(string long1, string lat1, string long2, string lat2)
         {
             // this will search within a range of lat/longs

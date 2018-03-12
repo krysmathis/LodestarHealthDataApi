@@ -76,7 +76,9 @@ namespace LodestarHealthDataApi
             // Shows UseCors with CorsPolicyBuilder.
             app.UseCors(builder =>
                 builder.WithOrigins("https://blissful-kare-a8283f.netlify.com","http://localhost:3000","http://localhost:8080")
-                .AllowAnyHeader()    
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()   
             );
             
             app.UseAuthentication();
