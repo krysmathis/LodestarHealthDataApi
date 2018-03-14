@@ -11,9 +11,10 @@ using System;
 namespace LodestarHealthDataApi.Migrations
 {
     [DbContext(typeof(LodestarAPIContext))]
-    partial class LodestarAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180313191809_HospitalTable")]
+    partial class HospitalTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,34 +124,6 @@ namespace LodestarHealthDataApi.Migrations
                     b.HasIndex("Lat", "Long");
 
                     b.ToTable("Facility");
-                });
-
-            modelBuilder.Entity("LodestarHealthDataApi.Models.Hospital", b =>
-                {
-                    b.Property<int>("HospitalId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Address");
-
-                    b.Property<string>("City");
-
-                    b.Property<int>("CountyName");
-
-                    b.Property<string>("Hospital_Name");
-
-                    b.Property<double>("Lat");
-
-                    b.Property<double>("Lon");
-
-                    b.Property<int>("ProviderId");
-
-                    b.Property<string>("State");
-
-                    b.Property<int>("ZipCode");
-
-                    b.HasKey("HospitalId");
-
-                    b.ToTable("Hospital");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

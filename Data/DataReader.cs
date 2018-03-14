@@ -40,6 +40,14 @@ namespace LodestarHealthDataApi.Data
                     await userstore.AddToRoleAsync(user, "Administrator");
                 }
 
+            Hospital[] hospitals = new Hospital[] {
+                new Hospital() {
+                    ProviderId = 1,
+                    Address = "one",
+                    
+
+                },
+            };
 
              // check if data exists in the database
             if (!context.Facility.Any()){

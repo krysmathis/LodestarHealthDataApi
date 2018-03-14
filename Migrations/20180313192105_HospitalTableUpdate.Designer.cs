@@ -11,9 +11,10 @@ using System;
 namespace LodestarHealthDataApi.Migrations
 {
     [DbContext(typeof(LodestarAPIContext))]
-    partial class LodestarAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180313192105_HospitalTableUpdate")]
+    partial class HospitalTableUpdate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

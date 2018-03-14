@@ -9,7 +9,7 @@ namespace LodestarHealthDataApi.Models
         public string System_Affiliation_Name {get; set;}
         public string Facility_Name {get;set;}
         public double Current_Year_Market_Share {get; set;}
-        public double Current_Year_Commercial_Market_Share {get; set;}
+        public double? Current_Year_Commercial_Market_Share {get; set;}
         public double Lat {get;set;}
         public double Long {get; set;}
         public string Quality_Complications_Deaths {get; set;}
