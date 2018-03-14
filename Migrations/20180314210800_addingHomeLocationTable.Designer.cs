@@ -11,9 +11,10 @@ using System;
 namespace LodestarHealthDataApi.Migrations
 {
     [DbContext(typeof(LodestarAPIContext))]
-    partial class LodestarAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20180314210800_addingHomeLocationTable")]
+    partial class addingHomeLocationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -123,25 +124,6 @@ namespace LodestarHealthDataApi.Migrations
                     b.HasIndex("Lat", "Long");
 
                     b.ToTable("Facility");
-                });
-
-            modelBuilder.Entity("LodestarHealthDataApi.Models.HomeLocation", b =>
-                {
-                    b.Property<int>("HomeLocationId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<double>("Lat");
-
-                    b.Property<double>("Lon");
-
-                    b.Property<string>("UserId")
-                        .IsRequired();
-
-                    b.HasKey("HomeLocationId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("HomeLocation");
                 });
 
             modelBuilder.Entity("LodestarHealthDataApi.Models.Hospital", b =>
@@ -277,14 +259,6 @@ namespace LodestarHealthDataApi.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
-                });
-
-            modelBuilder.Entity("LodestarHealthDataApi.Models.HomeLocation", b =>
-                {
-                    b.HasOne("LodestarHealthDataApi.Models.ApplicationUser", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

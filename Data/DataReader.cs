@@ -64,34 +64,45 @@ namespace LodestarHealthDataApi.Data
             } 
         }
 
+        // A valid entry is one that is not null, not blank and not a dash
+        // includes special handling if 'Not Available'
+        private static bool isValid(string val) {
+            return (val == "" || 
+                    val == null || 
+                    val == "Not Available" ||
+                    val == "-") ? false : true;
+        }
+
         private static Facility FacilityFactory(string data) 
         {
+            data = data.Replace("\"", "");
             var commaSeperated = data.Split(',');
+            
             
             Facility facility = new Facility(); 
             
             facility.System_Affiliation_Name = commaSeperated[0];
             facility.Facility_Name = commaSeperated[1];
-            facility.Current_Year_Market_Share = Convert.ToDouble(commaSeperated[2]);
-            facility.Current_Year_Commercial_Market_Share = Convert.ToDouble(commaSeperated[3]);
-            facility.Lat = Convert.ToDouble(commaSeperated[4]);
-            facility.Long = Convert.ToDouble(commaSeperated[5]);
+            facility.Current_Year_Market_Share = isValid(commaSeperated[2]) ? Convert.ToDouble(commaSeperated[2]) : default(double);
+            facility.Current_Year_Commercial_Market_Share = isValid(commaSeperated[3])  ? Convert.ToDouble(commaSeperated[3]) : default(double);
+            facility.Lat = isValid(commaSeperated[4]) ? Convert.ToDouble(commaSeperated[4]) : default(double);
+            facility.Long = isValid(commaSeperated[5]) ? Convert.ToDouble(commaSeperated[5]) : default(double);
             facility.Quality_Complications_Deaths = commaSeperated[6];
-            facility.Likelihood_To_Recommend = Convert.ToInt32(commaSeperated[7]);
-            facility.Overall_Hospital_Linear_Mean_Score = Convert.ToInt32(commaSeperated[8]);
+            facility.Likelihood_To_Recommend = isValid(commaSeperated[7])  ? Convert.ToInt32(commaSeperated[7]) : default(int);
+            facility.Overall_Hospital_Linear_Mean_Score = isValid(commaSeperated[8]) ? Convert.ToInt32(commaSeperated[8]) : default(int);
             facility.Quality_Hosp_Acq_Infections = commaSeperated[9];
             facility.Quality_Readmissions = commaSeperated[10];
-            facility.Total_2017_22_Pop_Growth = Convert.ToDouble(commaSeperated[11]);
-            facility.Household_Income = Convert.ToDouble(commaSeperated[12]);
-            facility.CY_Discharges =Convert.ToInt64(commaSeperated[13]);
-            facility.Estimated_NR = Convert.ToInt64(commaSeperated[14]);
-            facility.Estimated_CM = Convert.ToInt64(commaSeperated[15]);
-            facility.Estimated_EBITDA = Convert.ToInt64(commaSeperated[16]);
-            facility.Current_Liabilities = Convert.ToInt64(commaSeperated[17]);
-            facility.Current_Assets = Convert.ToInt64(commaSeperated[18]);
-            facility.Total_Liabilities = Convert.ToInt64(commaSeperated[19]);
-            facility.Fund_Balance = Convert.ToInt64(commaSeperated[20]);
-            facility.EBITDAR = Convert.ToInt64(commaSeperated[21]);
+            facility.Total_2017_22_Pop_Growth = isValid(commaSeperated[11]) ? Convert.ToDouble(commaSeperated[11]) : default(double);
+            facility.Household_Income = isValid(commaSeperated[12]) ? Convert.ToDouble(commaSeperated[12]) : default(double);
+            facility.CY_Discharges = isValid(commaSeperated[13]) ? Convert.ToInt64(commaSeperated[13]) : default(long);
+            facility.Estimated_NR = isValid(commaSeperated[14])  ? Convert.ToInt64(commaSeperated[14]) : default(long);
+            facility.Estimated_CM = isValid(commaSeperated[15])  ? Convert.ToInt64(commaSeperated[15]) : default(long);
+            facility.Estimated_EBITDA = isValid(commaSeperated[16])  ? Convert.ToInt64(commaSeperated[16]) : default(long);
+            facility.Current_Liabilities = isValid(commaSeperated[17])  ? Convert.ToInt64(commaSeperated[17]) : default(long);
+            facility.Current_Assets = isValid(commaSeperated[18])  ? Convert.ToInt64(commaSeperated[18]) : default(long);
+            facility.Total_Liabilities = isValid(commaSeperated[19])  ? Convert.ToInt64(commaSeperated[19]) : default(long);
+            facility.Fund_Balance = isValid(commaSeperated[20])  ? Convert.ToInt64(commaSeperated[20]) : default(long);
+            facility.EBITDAR = isValid(commaSeperated[21])  ? Convert.ToInt64(commaSeperated[21]) : default(long);
             
             // ... all the logic to turn one row of csv data into a facility
             return facility;

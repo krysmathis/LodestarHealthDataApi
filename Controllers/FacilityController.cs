@@ -14,7 +14,6 @@ namespace LodestarHealthDataApi.Controllers
     public class FacilityController : Controller
     {
         private readonly LodestarAPIContext _context;
-
         public FacilityController (LodestarAPIContext context) {
             _context = context;
         }
