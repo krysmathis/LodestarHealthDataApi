@@ -36,19 +36,36 @@ namespace LodestarHealthDataApi.Controllers
 
         // POST api/values
         [HttpPost]
-        public string Post(string latitude, string longitude)
+        [Authorize]
+        public int Post(string username, string latitude, string longitude)
         {
-            return "yes!";
-            // ApplicationUser user = _userManager.Users.Where(u => u.UserName == "Test@Account.com").Single();
+            
+            ApplicationUser user = _ctx.Users.Where(u => u.UserName == username).Single();
 
-            // // create home location
-            // HomeLocation home = new HomeLocation() {
-            //     User = user,
-            //     Lat = Convert.ToDouble(latitude),
-            //     Lon = Convert.ToDouble(longitude)
-            // };
+            
+            // create home location
+            HomeLocation home = new HomeLocation() {
+                User = user,
+                Lat = Convert.ToDouble(latitude),
+                Lon = Convert.ToDouble(longitude)
+            };
+            
+            // check for existing record
+            var existingRecords = _ctx.HomeLocation.Where(l => l.User == user);
+            
+            // remove the old user records
+            if (existingRecords.Count() > 0) {
+               foreach (var e in existingRecords) {
+                   _ctx.HomeLocation.Remove(e);
+               }
+            }
+            
+            _ctx.HomeLocation.Add(home);
+            _ctx.SaveChanges();
+            
+            home.User = null;
 
-            // _ctx.Add(home);
+            return _ctx.HomeLocation.Where(l => l.User == user).Count();
         }
 
         // PUT api/values/5
