@@ -20,28 +20,29 @@ namespace LodestarHealthDataApi.Controllers
             _ctx = ctx;
         }
 
-        // GET api/values
+        // GET api/homelocation?username
         [HttpGet]
-        public IEnumerable<string> Get()
+        [Authorize]
+        public HomeLocation Get(string username)
         {
-            return new string[] { "value1", "value2" };
+            // get the user
+            ApplicationUser user = _ctx.Users.Where(u => u.UserName == username).Single();
+            // find the home location based on the user
+            HomeLocation home = _ctx.HomeLocation.Where(l => l.User == user).FirstOrDefault();
+            // remove the user information
+            home.User = null;
+            // return the home location object
+            return home;
+            
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/values
+        // POST api/homelocation/username&latitude&longitude
         [HttpPost]
         [Authorize]
-        public int Post(string username, string latitude, string longitude)
+        public HomeLocation Post(string username, string latitude, string longitude)
         {
             
             ApplicationUser user = _ctx.Users.Where(u => u.UserName == username).Single();
-
             
             // create home location
             HomeLocation home = new HomeLocation() {
@@ -65,19 +66,9 @@ namespace LodestarHealthDataApi.Controllers
             
             home.User = null;
 
-            return _ctx.HomeLocation.Where(l => l.User == user).Count();
+            return home;
         }
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
     }
 }
